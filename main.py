@@ -36,7 +36,7 @@ ctr3 = 1
 joystick = Joystick(0, True)
 STEPPER = stepper()
 s0 = stepper(port=0, micro_steps=32, hold_current=20, run_current=20, accel_current=20, deaccel_current=20,
-             steps_per_unit=200, speed=8)
+             steps_per_unit=200, speed=5)
 
 
 class ProjectNameGUI(App):
@@ -148,13 +148,16 @@ class MainScreen(Screen):
         #    self.onOffBtn.text = "Off"
         #    s0.softStop()
         #    ctr3 += 1
-        if s0.isBusy():
-
-            s0.start_relative_move(20)
-            self.onOffBtn.text = "On"
-        else:
+        print("toggle2")
+        if s0.is_busy():
+            print("motor busy")
             s0.softStop()
             self.onOffBtn.text = "Off"
+
+        else:
+            s0.start_relative_move(20)
+            self.onOffBtn.text = "On"
+            print("motor not busy")
 
 
 
