@@ -35,7 +35,6 @@ ctr2 = 0
 ctr3 = 1
 joystick = Joystick(0, True)
 STEPPER = stepper()
-STEPPER.home(0)
 s0 = stepper(port=0, micro_steps=32, hold_current=20, run_current=20, accel_current=20, deaccel_current=20,
              steps_per_unit=200, speed=8)
 
@@ -138,18 +137,26 @@ class MainScreen(Screen):
     def start_joy_thread(self):  # This should be inside the MainScreen Class
         Thread(target=self.joy_update).start()
 
+    def toggle2(self):
+        # global ctr3
+        # if ctr3 % 2 == 0:
+        #    self.onOffBtn.text = "On"
+        #    s0.start_relative_move(20)
+        #   ctr3 += 1
 
-    def toggle(self):
-        global ctr
-        if ctr % 2 == 0:
-            self.onOffBtn.text = "On"
+        # else:
+        #    self.onOffBtn.text = "Off"
+        #    s0.softStop()
+        #    ctr3 += 1
+        if s0.isBusy():
+
             s0.start_relative_move(20)
-            ctr += 1
-
+            self.onOffBtn.text = "On"
         else:
-            self.onOffBtn.text = "Off"
             s0.softStop()
-            ctr += 1
+            self.onOffBtn.text = "Off"
+
+
 
 class TransitionScreen(Screen):
 
