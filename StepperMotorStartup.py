@@ -9,6 +9,12 @@ import os
 from time import sleep
 import RPi.GPIO as GPIO
 from pidev.stepper import stepper
+
+import spidev
+import os
+from time import sleep
+import RPi.GPIO as GPIO
+from pidev.stepper import stepper
 spi = spidev.SpiDev()
 
 # Init a 200 steps per revolution stepper on Port 0
