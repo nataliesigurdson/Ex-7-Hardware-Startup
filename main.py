@@ -180,6 +180,12 @@ class MainScreen(Screen):
             print("going clockwise")
             ctr4 += 1
 
+    def slider2(self):
+        global s0
+        s0 = stepper(port=0, micro_steps=32, hold_current=20, run_current=20, accel_current=20, deaccel_current=20,
+                     steps_per_unit=200, speed=self.speedSlider)
+        s0.start_relative_move(20)
+
 
 
 

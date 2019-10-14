@@ -11,6 +11,7 @@
     imageBtn: imageBtn
     mtrOnOff: mtrOnOff
     changeDir: changeDir
+    speedSlider: speedSlider
 
 
     FloatLayout:
@@ -151,4 +152,20 @@
         y: root.height * 0.55
         color: 0, 1, 0, 1
         on_press: root.change_direction()
+
+    Slider:
+        id: speedSlider
+        min: 0
+        max: 10
+        y:root.height * .2
+        size_hint: 0.2, 0.2
+        step: 1
+        on_touch_move: root.slider2()
+
+    Label:
+        text: "stepper speed: " + str(speedSlider.value)
+        size: 1000, 1000
+        x: root.width * 0
+        y:root.height * -0.1
+        color: 0, 0, 0, 1
 
