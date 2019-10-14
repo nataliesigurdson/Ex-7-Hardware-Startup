@@ -9,6 +9,8 @@
     motorLabel: motorLabel
     slider: slider
     imageBtn: imageBtn
+    mtrOnOff: mtrOnOff
+    changeDir: changeDir
 
 
     FloatLayout:
@@ -40,7 +42,7 @@
         y: root.height * 0.5
         #on_press: root.pressed()
 
-    DPEAButton:
+    #DPEAButton:
         id: onOffBtn
         text: "Toggle"
         size: 100, 100
@@ -48,7 +50,7 @@
         y:root.height * 0.7
         color: 1, 0, 0, 1
        # on_press: root.button_state(OnOffBtn.text)
-        on_press: root.toggle()
+    #    on_press: root.toggle()
 
     DPEAButton:
         id: ctrBtn
@@ -132,12 +134,21 @@
 
 
     DPEAButton:
-        id: "mtrOnOff"
-        text: 'motor on/off'
+        id: mtrOnOff
+        text: "motor on/off"
         size: 100, 100
         x: root.width * 0.7
         y: root.height * 0.35
         color: 0, 1, 0, 1
         on_press: root.toggle2()
 
+
+    DPEAButton:
+        id: changeDir
+        text: "Change_Dir"
+        size: 100, 100
+        x: root.width * 0.7
+        y: root.height * 0.55
+        color: 0, 1, 0, 1
+        on_press: root.change_direction()
 

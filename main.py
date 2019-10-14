@@ -33,10 +33,11 @@ TRANSITION_SCREEN_NAME = 'TransitionScreen'
 ctr = 1
 ctr2 = 0
 ctr3 = 1
+ctr4 = 0
 joystick = Joystick(0, True)
 STEPPER = stepper()
 s0 = stepper(port=0, micro_steps=32, hold_current=20, run_current=20, accel_current=20, deaccel_current=20,
-             steps_per_unit=200, speed=5)
+             steps_per_unit=200, speed=2)
 
 
 class ProjectNameGUI(App):
@@ -148,16 +149,37 @@ class MainScreen(Screen):
         #    self.onOffBtn.text = "Off"
         #    s0.softStop()
         #    ctr3 += 1
+        global ctr4
         print("toggle2")
+        # if ctr4 % 2 == 0:
         if s0.is_busy():
             print("motor busy")
             s0.softStop()
-            self.onOffBtn.text = "Off"
+            self.mtrOnOff.text = "Motor Off"
+            # ctr4 += 1
 
         else:
             s0.start_relative_move(20)
-            self.onOffBtn.text = "On"
+            self.mtrOnOff.text = "Motor On"
             print("motor not busy")
+            # ctr4 += 1
+
+    def change_direction(self):
+        global ctr4
+        if ctr4 % 2 == 0:
+            print("going counterclockwise")
+            s0.stop()
+            s0.start_relative_move(-20)
+            self.changeDir.text = "Go Counterclockwise"
+            ctr4 += 1
+
+        else:
+            s0.stop()
+            s0.start_relative_move(20)
+            self.changeDir.text = "Go Clockwise"
+            print("going clockwise")
+            ctr4 += 1
+
 
 
 
