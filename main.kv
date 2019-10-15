@@ -12,6 +12,8 @@
     mtrOnOff: mtrOnOff
     changeDir: changeDir
     speedSlider: speedSlider
+    fancyPosition: fancyPosition
+
 
 
     FloatLayout:
@@ -170,7 +172,8 @@
         color: 0, 0, 0, 1
 
     Label:
-        text: "current position " + str(root.txt_var1)
+        id: fancyPosition
+        text: "current position: " + str(root.txt_var1)
         size: 1000, 1000
         x: root.width * -0.3
         y:root.height * 0.4
@@ -185,9 +188,3 @@
         color: 0, 1, 0, 1
         on_press: root.fancy_button()
 
-    Label:
-        text: "current position " + str(root.txt_var2)
-        size: 1000, 1000
-        x: root.width * -0.3
-        y:root.height * 0.38
-        color: 0, 0, 0, 1

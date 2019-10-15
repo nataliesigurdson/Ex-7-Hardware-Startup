@@ -15,6 +15,7 @@ from pidev.Joystick import Joystick
 from time import sleep
 import RPi.GPIO as GPIO
 from pidev.stepper import stepper
+import time
 
 
 from pidev.MixPanel import MixPanel
@@ -74,6 +75,7 @@ class MainScreen(Screen):
     speedSlider = ObjectProperty()
     txt_var1 = ObjectProperty()
     txt_var2 = ObjectProperty()
+    fancyPosition = ObjectProperty()
 
     button_state_var = False
 
@@ -193,8 +195,14 @@ class MainScreen(Screen):
         global s0
         txt_var1 = s0.get_position_in_units()
         s0 = stepper(port=0, micro_steps=32, hold_current=20, run_current=20, accel_current=20, deaccel_current=20,
-                     steps_per_unit=200, speed=1)
-        txt_var2 = s0.start_relative_move(15)
+                     steps_per_unit=200, speed=5)
+        s0.relative_move(15)
+        self.fancyPosition.text = "current position: %d " % s0.get_position_in_units()
+        time.sleep(5)  # some speed values are increased and sleeps time decreased temporarily so code will run faster
+        self.ids.speed = 6
+        s0.relative_move(10)
+        self.fancyPosition.text = "current position: %d " % s0.get_position_in_units()
+
 
 
 class TransitionScreen(Screen):
