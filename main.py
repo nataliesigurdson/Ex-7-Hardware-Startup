@@ -63,7 +63,7 @@ class MainScreen(Screen):
     onOffBtn = ObjectProperty(None)
     ctrBtn = ObjectProperty(None)
     mtrBtn = ObjectProperty(None)
-    motorLabel = ObjectProperty(None)
+    # motorLabel = ObjectProperty(None)
     flip = ObjectProperty(None)
     slider = ObjectProperty(None)
     imageBtn = ObjectProperty(None)
@@ -72,6 +72,8 @@ class MainScreen(Screen):
     joy_x_val = ObjectProperty()
     mtrOnOff = ObjectProperty()
     speedSlider = ObjectProperty()
+    txt_var1 = ObjectProperty()
+    txt_var2 = ObjectProperty()
 
     button_state_var = False
 
@@ -188,6 +190,11 @@ class MainScreen(Screen):
         s0.start_relative_move(20)
 
     def fancy_button(self):
+        global s0
+        txt_var1 = s0.get_position_in_units()
+        s0 = stepper(port=0, micro_steps=32, hold_current=20, run_current=20, accel_current=20, deaccel_current=20,
+                     steps_per_unit=200, speed=1)
+        txt_var2 = s0.start_relative_move(15)
 
 
 class TransitionScreen(Screen):

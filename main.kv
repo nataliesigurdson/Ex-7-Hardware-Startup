@@ -6,7 +6,7 @@
     onOffBtn: onOffBtn
     ctrBtn: ctrBtn
     mtrBtn: mtrBtn
-    motorLabel: motorLabel
+   # motorLabel: motorLabel
     slider: slider
     imageBtn: imageBtn
     mtrOnOff: mtrOnOff
@@ -79,7 +79,7 @@
         y:root.height * -0.2
         color: 0, 0, 0, 1
 
-    Slider:
+    #Slider:
         id: slider
         min: 0
         max: 100
@@ -87,8 +87,8 @@
         size_hint: 0.2, 0.2
         step: 1
 
-    Label:
-        text: str(slider.value)
+    #Label:
+       # text: str(slider.value)
         size: 1000, 1000
         x: root.width * 0
         y:root.height * 0.4
@@ -169,3 +169,25 @@
         y:root.height * -0.1
         color: 0, 0, 0, 1
 
+    Label:
+        text: "current position " + str(root.txt_var1)
+        size: 1000, 1000
+        x: root.width * -0.3
+        y:root.height * 0.4
+        color: 0, 0, 0, 1
+
+    DPEAButton:
+        id: fancyBtn
+        text: "fancy"
+        size: 100, 100
+        x: root.width * 0.05
+        y: root.height * 0.8
+        color: 0, 1, 0, 1
+        on_press: root.fancy_button()
+
+    Label:
+        text: "current position " + str(root.txt_var2)
+        size: 1000, 1000
+        x: root.width * -0.3
+        y:root.height * 0.38
+        color: 0, 0, 0, 1
