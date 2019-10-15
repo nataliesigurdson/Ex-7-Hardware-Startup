@@ -71,6 +71,7 @@ class MainScreen(Screen):
     joy_y_val = ObjectProperty()
     joy_x_val = ObjectProperty()
     mtrOnOff = ObjectProperty()
+    speedSlider = ObjectProperty()
 
     button_state_var = False
 
@@ -183,10 +184,8 @@ class MainScreen(Screen):
     def slider2(self):
         global s0
         s0 = stepper(port=0, micro_steps=32, hold_current=20, run_current=20, accel_current=20, deaccel_current=20,
-                     steps_per_unit=200, speed=self.speedSlider)
+                     steps_per_unit=200, speed=self.speedSlider.value)
         s0.start_relative_move(20)
-
-
 
 
 class TransitionScreen(Screen):
