@@ -187,6 +187,8 @@ class MainScreen(Screen):
                      steps_per_unit=200, speed=self.speedSlider.value)
         s0.start_relative_move(20)
 
+    def fancy_button(self):
+
 
 class TransitionScreen(Screen):
 
