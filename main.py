@@ -39,7 +39,7 @@ joystick = Joystick(0, True)
 STEPPER = stepper()
 s0 = stepper(port=0, micro_steps=32, hold_current=20, run_current=20, accel_current=20, deaccel_current=20,
              steps_per_unit=200, speed=2)
-
+flip = False
 
 class ProjectNameGUI(App):
     """
@@ -75,7 +75,7 @@ class MainScreen(Screen):
     speedSlider = ObjectProperty()
     txt_var1 = ObjectProperty()
     txt_var2 = ObjectProperty()
-    fancyPosition = ObjectProperty()
+    fancyPosition = ObjectProperty(None)
 
     button_state_var = False
 
@@ -185,32 +185,56 @@ class MainScreen(Screen):
             print("going clockwise")
             ctr4 += 1
 
-    def slider2(self):
-        global s0
-        s0 = stepper(port=0, micro_steps=32, hold_current=20, run_current=20, accel_current=20, deaccel_current=20,
-                     steps_per_unit=200, speed=self.speedSlider.value)
-        s0.start_relative_move(20)
+    def motor2(self):
+        # print("in motor2")
+        global flip
+        flip = not flip
+        # s0 = stepper(port=0, micro_steps=32, hold_current=20, run_current=20, accel_current=20, deaccel_current=20,
+        #           steps_per_unit=200, speed=self.speedSlider.value)
+        s0.set_speed(self.speedSlider.value)
+        print(self.speedSlider.value)
+        # s0.start_relative_move(20)
+        # while s0.isBusy():
+        #   time.sleep(0.001)
+        print("motor2")
+
+        if s0.is_busy():
+            print("motor busy")
+            s0.softStop()
+
+        else:
+            s0.start_relative_move(20)
+            print("motor not busy")
 
     def fancy_thread(self):
         Thread(target=self.fancy_button).start()
 
     def fancy_button(self):
-        global s0
+        # global s0
         txt_var1 = s0.get_position_in_units()
-        s0 = stepper(port=0, micro_steps=32, hold_current=20, run_current=20, accel_current=20, deaccel_current=20,
-                     steps_per_unit=200, speed=5)
+
         s0.set_as_home()
-        s0.relative_move(15)
-        self.fancyPosition.text = "Current Position: %d " % s0.get_position_in_units()
+        s0.start_relative_move(15)
+        print(s0.get_position_in_units())
+        while s0.isBusy():
+            time.sleep(0.001)
+            print(s0.get_position_in_units())
+            self.ids.fancyPosition.text = "Current Position:  " + str(s0.get_position_in_units())
+        print("Current Position:  " + str(s0.get_position_in_units()))
         time.sleep(5)  # some speed values are increased and sleeps time decreased temporarily so code will run faster
-        self.ids.fancyPosition.speed = 6
-        s0.relative_move(10)
-        self.fancyPosition.text = "Current Position: %d " % s0.get_position_in_units()
+        s0.set_speed(6)
+        s0.start_relative_move(10)
+        while s0.isBusy():
+            time.sleep(0.001)
+        self.ids.fancyPosition.text = "Current Position: %d" % s0.get_position_in_units()
+        print("Current Position:  " + str(s0.get_position_in_units()))
         time.sleep(5)
         s0.goHome()
         time.sleep(5)
-        self.fancyPosition.text = "Current Position: %d " % s0.get_position_in_units()
-        self.ids.fancyPosition.speed = 8
+        s0.stop()
+        print("Current Position:  " + str(s0.get_position_in_units()))
+        self.ids.fancyPosition.text = "Current Position: %d" % s0.get_position_in_units()
+
 
 
 
@@ -246,7 +270,7 @@ class AdminScreen(Screen):
 
         super(AdminScreen, self).__init__(**kwargs)
 
-        self.flip = False
+
 
     @staticmethod
     def transition_back():

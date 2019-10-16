@@ -71,7 +71,7 @@
         x: root.width * 0.08
         y:root.height * 0.35
         color: 0, 1, 1, 1
-        on_press: root.flip = not root.flip
+        on_press: root.motor2()
 
     Label:
         id: motorLabel
@@ -157,12 +157,12 @@
 
     Slider:
         id: speedSlider
-        min: 0
-        max: 10
+        min: 0.0
+        max: 10.0
         y:root.height * .2
         size_hint: 0.2, 0.2
         step: 1
-        on_touch_move: root.slider2()
+        # on_touch_up: root.slider2()
 
     Label:
         text: "stepper speed: " + str(speedSlider.value)
@@ -173,7 +173,7 @@
 
     Label:
         id: fancyPosition
-        text: "Current Position: "
+        text: "Current Position"
         size: 1000, 1000
         x: root.width * -0.3
         y:root.height * 0.4
