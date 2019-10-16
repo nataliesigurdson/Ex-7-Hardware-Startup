@@ -191,17 +191,26 @@ class MainScreen(Screen):
                      steps_per_unit=200, speed=self.speedSlider.value)
         s0.start_relative_move(20)
 
+    def fancy_thread(self):
+        Thread(target=self.fancy_button).start()
+
     def fancy_button(self):
         global s0
         txt_var1 = s0.get_position_in_units()
         s0 = stepper(port=0, micro_steps=32, hold_current=20, run_current=20, accel_current=20, deaccel_current=20,
                      steps_per_unit=200, speed=5)
+        s0.set_as_home()
         s0.relative_move(15)
-        self.fancyPosition.text = "current position: %d " % s0.get_position_in_units()
+        self.fancyPosition.text = "Current Position: %d " % s0.get_position_in_units()
         time.sleep(5)  # some speed values are increased and sleeps time decreased temporarily so code will run faster
-        self.ids.speed = 6
+        self.ids.fancyPosition.speed = 6
         s0.relative_move(10)
-        self.fancyPosition.text = "current position: %d " % s0.get_position_in_units()
+        self.fancyPosition.text = "Current Position: %d " % s0.get_position_in_units()
+        time.sleep(5)
+        s0.goHome()
+        time.sleep(5)
+        self.fancyPosition.text = "Current Position: %d " % s0.get_position_in_units()
+        self.ids.fancyPosition.speed = 8
 
 
 
