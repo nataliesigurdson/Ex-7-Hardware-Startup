@@ -212,20 +212,21 @@ class MainScreen(Screen):
     def fancy_button(self):
         # global s0
         txt_var1 = s0.get_position_in_units()
-
+        print("thread started")
         s0.set_as_home()
         s0.start_relative_move(15)
         print(s0.get_position_in_units())
         while s0.isBusy():
-            time.sleep(0.001)
-            print(s0.get_position_in_units())
+            time.sleep(.5)
             self.ids.fancyPosition.text = "Current Position:  " + str(s0.get_position_in_units())
+        self.ids.fancyPosition.text = "Current Position:  " + str(s0.get_position_in_units())
         print("Current Position:  " + str(s0.get_position_in_units()))
         time.sleep(5)  # some speed values are increased and sleeps time decreased temporarily so code will run faster
         s0.set_speed(6)
         s0.start_relative_move(10)
         while s0.isBusy():
-            time.sleep(0.001)
+            time.sleep(.5)
+            self.ids.fancyPosition.text = "Current Position:  " + str(s0.get_position_in_units())
         self.ids.fancyPosition.text = "Current Position: %d" % s0.get_position_in_units()
         print("Current Position:  " + str(s0.get_position_in_units()))
         time.sleep(5)
@@ -234,6 +235,7 @@ class MainScreen(Screen):
         s0.stop()
         print("Current Position:  " + str(s0.get_position_in_units()))
         self.ids.fancyPosition.text = "Current Position: %d" % s0.get_position_in_units()
+        print("thread stopped")
 
 
 
