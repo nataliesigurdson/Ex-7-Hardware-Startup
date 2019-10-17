@@ -55,22 +55,38 @@
        # on_press: root.button_state(OnOffBtn.text)
     #    on_press: root.toggle()
 
-    DPEAButton:
+    Button:
         id: ctrBtn
         text: "Counter"
         size: 100, 100
-        x: root.width * 0.08
-        y:root.height * 0.1
-        color: 1, 0, 0, 1
+        background_color: (0, 0, 0, 1.0)
+        font_name: 'Roboto-Bold'
+        text_size: self.size
+        outline_width: 5
+        outline_color: (1,1,1,1)
+        halign: 'center'
+        valign: 'middle'
+        font_size: 40
+        pos_hint: {"x":.8, "top":.4}
+        size_hint: 0.1,0.1
+        color: 0,0,1,1
         on_press: root.counter()
 
-    DPEAButton:
+    Button:
         id: mtrBtn
-        text: "motor"
+        text: "Slider Motor"
         size: 100, 100
-        x: root.width * 0.08
-        y:root.height * 0.35
-        color: 0, 1, 1, 1
+        background_color: (0, 0, 0, 1.0)
+        font_name: 'Roboto-Bold'
+        text_size: self.size
+        outline_width: 5
+        outline_color: (1,1,1,1)
+        halign: 'center'
+        valign: 'middle'
+        font_size: 35
+        pos_hint: {"x":.3, "top":.43}
+        size_hint: 0.13,0.13
+        color: 0,0,1,1
         on_press: root.motor2()
 
     Label:
@@ -114,19 +130,35 @@
 
     Label:
         id: joy_label_x
-        text: "x:" + str(root.joy_x_val)
-        size: 1000, 1000
-        x: root.width * 0
-        y:root.height * 0.1
-        color: 0, 0, 0, 1
+        text: "x= " + str(root.joy_x_val)
+        size: 100,100
+        background_color: (0, 0, 0, 1.0)
+        font_name: 'Roboto-Bold'
+        text_size: self.size
+        outline_width: 5
+        outline_color: (1,1,1,1)
+        halign: 'center'
+        valign: 'middle'
+        font_size: 40
+        pos_hint: {"x":.75 , "top":.65}
+        size_hint: 0.2,0.2
+        color: 0,0,1,1
 
     Label:
         id: joy_label_y
-        text: "y:" + str(root.joy_y_val)
-        size: 1000, 1000
-        x: root.width * 0
-        y:root.height * 0.2
-        color: 0, 0, 0, 1
+        text: "y= " + str(root.joy_y_val)
+        size: 100,100
+        background_color: (0, 0, 0, 1.0)
+        font_name: 'Roboto-Bold'
+        text_size: self.size
+        outline_width: 5
+        outline_color: (1,1,1,1)
+        halign: 'center'
+        valign: 'middle'
+        font_size: 40
+        pos_hint: {"x":.75 , "top":.75}
+        size_hint: 0.2,0.2
+        color: 0,0,1,1
 
     Label
         id: jButton
@@ -136,55 +168,92 @@
         color: 0, 0, 0, 1
 
 
-    DPEAButton:
+    Button:
         id: mtrOnOff
-        text: "motor on/off"
-        size: 100, 100
-        x: root.width * 0.7
-        y: root.height * 0.35
-        color: 0, 1, 0, 1
+        text: "Motor On/Off"
+        size: 100,100
+        background_color: (0, 0, 0, 1.0)
+        font_name: 'Roboto-Bold'
+        text_size: self.size
+        outline_width: 5
+        outline_color: (1,1,1,1)
+        halign: 'center'
+        valign: 'middle'
+        font_size: 60
+        pos_hint: {"x":.45 , "top":.7}
+        size_hint: 0.3,0.2
+        color: 0,0,1,1
         on_press: root.toggle2()
 
 
-    DPEAButton:
+    Button:
         id: changeDir
-        text: "change direction"
-        size: 100, 100
-        x: root.width * 0.7
-        y: root.height * 0.55
-        color: 0, 1, 0, 1
+        text: "Change Direction"
+        size: 100,100
+        background_color: (0, 0, 0, 1.0)
+        font_name: 'Roboto-Bold'
+        text_size: self.size
+        outline_width: 5
+        outline_color: (1,1,1,1)
+        halign: 'center'
+        valign: 'middle'
+        font_size: 60
+        pos_hint: {"x":.45 , "top":.5}
+        size_hint: 0.3,0.2
+        color: 0,0,1,1
         on_press: root.change_direction()
 
     Slider:
         id: speedSlider
         min: 0.0
         max: 10.0
-        y:root.height * .2
-        size_hint: 0.2, 0.2
+        pos_hint: {"x":.07 , "top":.37}
+        size_hint: 0.2, 0.1
         step: 1
         # on_touch_up: root.slider2()
 
     Label:
-        text: "stepper speed: " + str(speedSlider.value)
-        size: 1000, 1000
-        x: root.width * 0
-        y:root.height * -0.1
-        color: 0, 0, 0, 1
+        text: "Stepper Speed= " + str(speedSlider.value)
+        background_color: (0, 0, 0, 1.0)
+        font_name: 'Roboto-Bold'
+        text_size: self.size
+        outline_width: 5
+        outline_color: (1,1,1,1)
+        halign: 'center'
+        valign: 'middle'
+        font_size: 40
+        pos_hint: {"x":.07, "top":.5}
+        size_hint: 0.2,0.2
+        color: 0,0,1,1
 
     Label:
         id: fancyPosition
-        text: "Current Position"
-        size: 1000, 1000
-        x: root.width * -0.3
-        y:root.height * 0.4
-        color: 0, 0, 0, 1
+        text: "Current Position= 0"
+        background_color: (0, 0, 0, 1.0)
+        font_name: 'Roboto-Bold'
+        text_size: self.size
+        outline_width: 5
+        outline_color: (1,1,1,1)
+        halign: 'center'
+        valign: 'middle'
+        font_size: 40
+        pos_hint: {"x":.56, "top":.33}
+        size_hint: 0.2,0.2
+        color: 0,0,1,1
 
-    DPEAButton:
+    Button:
         id: fancyBtn
-        text: "fancy"
-        size: 100, 100
-        x: root.width * 0.05
-        y: root.height * 0.8
-        color: 0, 1, 0, 1
+        text: "Fancy!"
+        size: 100,100
+        background_color: (0, 0, 0, 1.0)
+        font_name: 'Roboto-Bold'
+        text_size: self.size
+        outline_width: 5
+        outline_color: (1,1,1,1)
+        halign: 'center'
+        valign: 'middle'
+        font_size: 40
+        pos_hint: {"x":.45 , "top":.28}
+        size_hint: 0.1,0.1
+        color: 0,0,1,1
         on_press: root.fancy_thread()
-

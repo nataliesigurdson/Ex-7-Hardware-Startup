@@ -219,45 +219,45 @@ class MainScreen(Screen):
         print(s0.get_position_in_units())
         while s0.isBusy():
             time.sleep(.5)
-            self.ids.fancyPosition.text = "Current Position:  " + str(s0.get_position_in_units())
-        self.ids.fancyPosition.text = "Current Position:  " + str(s0.get_position_in_units())
-        print("Current Position:  " + str(s0.get_position_in_units()))
+            self.ids.fancyPosition.text = "Current Position=  " + str(s0.get_position_in_units())
+        self.ids.fancyPosition.text = "Current Position=  " + str(s0.get_position_in_units())
+        print("Current Position=  " + str(s0.get_position_in_units()))
 
         time.sleep(10)  # some speed values are increased and sleeps time decreased temporarily so code will run faster
         s0.set_speed(5)
         s0.start_relative_move(10)
         while s0.isBusy():
             time.sleep(.5)
-            self.ids.fancyPosition.text = "Current Position:  " + str(s0.get_position_in_units())
-        self.ids.fancyPosition.text = "Current Position: %d" % s0.get_position_in_units()
-        print("Current Position:  " + str(s0.get_position_in_units()))
+            self.ids.fancyPosition.text = "Current Position=  " + str(s0.get_position_in_units())
+        self.ids.fancyPosition.text = "Current Position= %d" % s0.get_position_in_units()
+        print("Current Position=  " + str(s0.get_position_in_units()))
 
         time.sleep(8)
         s0.goHome()
         while s0.isBusy():
             time.sleep(.5)
-            self.ids.fancyPosition.text = "Current Position:  " + str(s0.get_position_in_units())
+            self.ids.fancyPosition.text = "Current Position=  " + str(s0.get_position_in_units())
         # time.sleep(5)
         # s0.stop()
-        self.ids.fancyPosition.text = "Current Position: %d" % s0.get_position_in_units()
-        print("Current Position:  " + str(s0.get_position_in_units()))
+        self.ids.fancyPosition.text = "Current Position= %d" % s0.get_position_in_units()
+        print("Current Position=  " + str(s0.get_position_in_units()))
 
         time.sleep(30)
         s0.set_speed(8)
         s0.start_relative_move(100)
         while s0.isBusy():
             time.sleep(.5)
-            self.ids.fancyPosition.text = "Current Position:  " + str(s0.get_position_in_units())
-        self.ids.fancyPosition.text = "Current Position: %d" % s0.get_position_in_units()
-        print("Current Position:  " + str(s0.get_position_in_units()))
+            self.ids.fancyPosition.text = "Current Position=  " + str(s0.get_position_in_units())
+        self.ids.fancyPosition.text = "Current Position= %d" % s0.get_position_in_units()
+        print("Current Position=  " + str(s0.get_position_in_units()))
 
         time.sleep(10)
         s0.goHome()
         while s0.isBusy():
             time.sleep(.5)
-            self.ids.fancyPosition.text = "Current Position:  " + str(s0.get_position_in_units())
-        self.ids.fancyPosition.text = "Current Position: %d" % s0.get_position_in_units()
-        print("Current Position:  " + str(s0.get_position_in_units()))
+            self.ids.fancyPosition.text = "Current Position=  " + str(s0.get_position_in_units())
+        self.ids.fancyPosition.text = "Current Position= %d" % s0.get_position_in_units()
+        print("Current Position=  " + str(s0.get_position_in_units()))
 
         print("thread stopped")
 
